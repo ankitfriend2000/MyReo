@@ -1,0 +1,37 @@
+package proj;
+
+import java.math.*;
+
+public class MyProj {
+	
+	
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		BigInteger sum1 = new BigInteger("0");
+		BigInteger sum2 = new BigInteger("0");
+		BigInteger result = new BigInteger("0");
+		int N = 100000000;
+		BigInteger m =  new BigInteger("1000000007");
+		BigInteger i = new BigInteger("45");
+		int j;
+		BigInteger [] sequence = new BigInteger[2];
+		sequence[0] = BigInteger.ZERO;
+		for(j=1;j<N;j++)
+		{
+			sequence[1] = sequence[0].multiply(sequence[0]);
+			sequence[1] = sequence[1].add(i);
+			sequence[1] = sequence[1].mod(m);
+			if(j%2 == 0)
+				sum1 = sum1.add(sequence[1]);
+			else
+				sum2 = sum2.add(sequence[1]);
+			sequence[0] = sequence[1];
+		}
+		result = sum1.max(sum2);
+		System.out.println("The value of F("+N+") is :"+result.toString());
+
+	}
+}
+
+The value of F(10000) is :2487583914490
+The value of F(100000000) is :25044904050054620
